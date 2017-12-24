@@ -1,0 +1,23 @@
+input, button,body {
+	font-size: 34px;
+}
+.list li {
+	list-style: none;
+	background-color: pink;
+	padding: 5px;
+	margin: 5px;
+}
+
+.list li:after {
+	display: block;
+	content: '';
+	clear: both;
+}
+
+.list li button {
+	float: right;
+}
+.list li.passed {
+	text-decoration: line-through;
+	opacity: 0.5;
+}
