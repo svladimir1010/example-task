@@ -1,9 +1,25 @@
 var add = document.getElementById("add");
 add.addEventListener("click", function(e) {
 	var text = document.getElementById("new").value;
-	var task = new Task(text);
+	//	var task = new Task(text);
 
-	document.querySelector(".list").appendChild(task.el());
+	// ======================================================
+// добавляем обработчик через делегирование
+
+	var el = document.createElement("li");
+	el.innerHTML = text + "<button class='done'>done</button><button>remove</button>";
+
+	document.querySelector(".list").appendChild(el);
+
+	var list = document.querySelector(".list");
+
+	list.addEventListener("click", function({target}) {
+		(target.classList.contains("done")) ? target.parentNode.classList.toggle("passed") : '';
+	});
+
+
+	// ======================================================
+	//document.querySelector(".list").appendChild(task.el());
 });
 //первое у нас есть сущность - таска
 
@@ -25,7 +41,7 @@ Task.prototype.el = function() {
 
 	var done = document.createElement("button");
 	done.innerText = "done";
-	done.classList.add("done");
+	//done.classList.add("done");
 
 	// done.addEventListener('click', this.done.bind(this));
 	var self = this;
@@ -36,7 +52,7 @@ Task.prototype.el = function() {
 
 	var remove = document.createElement("button");
 	remove.innerText = "remove";
-	remove.classList.add("remove");
+	//remove.classList.add("remove");
 
 	remove.addEventListener("click", function() {
 		el.remove();
